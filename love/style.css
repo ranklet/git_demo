@@ -1,0 +1,591 @@
+/* ============ 基础重置与变量 ============ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink-light: #fff0f5;
+  --pink: #ffb6c1;
+  --pink-deep: #ff69b4;
+  --rose: #ff1493;
+  --red: #ff4757;
+  --white: #ffffff;
+  --shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
+  --shadow-hover: 0 12px 40px rgba(255, 105, 180, 0.25);
+  --radius: 24px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 25%, #f48fb1 50%, #f8bbd0 75%, #fce4ec 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 背景渐变动画 */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============ 爱心飘落 ============ */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.falling-heart {
+  position: absolute;
+  font-size: 24px;
+  animation: heartFall linear forwards;
+  opacity: 0.7;
+  user-select: none;
+}
+
+@keyframes heartFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) scale(1);
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* ============ 主容器 ============ */
+.main-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  padding: 20px;
+}
+
+/* ============ 卡片 ============ */
+.love-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.love-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 卡片顶部装饰 */
+.card-top-decoration {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.deco-heart {
+  font-size: 36px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.2); }
+}
+
+/* ============ 标题 ============ */
+.title-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.main-title {
+  font-size: 2rem;
+  color: var(--rose);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(255, 20, 147, 0.15);
+}
+
+.title-heart {
+  display: inline-block;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.title-heart:last-child {
+  animation-delay: 0.75s;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #d8829d;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+/* ============ 图片区域 ============ */
+.photo-section {
+  margin-bottom: 24px;
+}
+
+.photo-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  border: 2px dashed var(--pink);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-area:hover {
+  border-color: var(--pink-deep);
+  background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+}
+
+.photo-area.has-image {
+  border-style: solid;
+  border-color: var(--pink);
+  background: transparent;
+}
+
+.photo-placeholder {
+  text-align: center;
+  color: #c97a94;
+  transition: opacity var(--transition);
+}
+
+.photo-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 8px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.photo-placeholder p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.photo-placeholder small {
+  color: #b08090;
+  font-size: 0.75rem;
+}
+
+.photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.photo-area.has-image .photo-preview {
+  display: block;
+}
+
+.photo-area.has-image .photo-placeholder {
+  display: none;
+}
+
+.photo-change-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--rose);
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photo-area.has-image .photo-change-btn {
+  display: flex;
+}
+
+.photo-change-btn:hover {
+  background: var(--pink-deep);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ============ 姓名输入 ============ */
+.name-section {
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.95rem;
+  color: #b05070;
+  margin-bottom: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.name-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(255, 182, 193, 0.4);
+  border-radius: 14px;
+  font-size: 1rem;
+  color: #5a3040;
+  background: rgba(255, 255, 255, 0.7);
+  outline: none;
+  transition: all var(--transition);
+  letter-spacing: 1px;
+}
+
+.name-input::placeholder {
+  color: #c9a0b0;
+}
+
+.name-input:focus {
+  border-color: var(--pink-deep);
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* ============ 寄语编辑 ============ */
+.message-section {
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.message-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(255, 182, 193, 0.4);
+  border-radius: 14px;
+  font-size: 1rem;
+  color: #5a3040;
+  background: rgba(255, 255, 255, 0.7);
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  line-height: 1.7;
+  transition: all var(--transition);
+}
+
+.message-input:focus {
+  border-color: var(--pink-deep);
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.char-count {
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  font-size: 0.75rem;
+  color: #c9a0b0;
+  pointer-events: none;
+}
+
+/* ============ 表白按钮 ============ */
+.action-section {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.love-btn {
+  position: relative;
+  display: inline-block;
+  padding: 16px 48px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--pink-deep), var(--rose));
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  box-shadow: 0 6px 24px rgba(255, 20, 147, 0.35);
+  transition: all var(--transition);
+  overflow: hidden;
+  outline: none;
+}
+
+.love-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(255, 20, 147, 0.45);
+}
+
+.love-btn:active {
+  transform: translateY(-1px) scale(0.97);
+}
+
+/* 按钮点击波纹 */
+.love-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.love-btn.clicked::after {
+  width: 400px;
+  height: 400px;
+}
+
+/* 按钮粒子 */
+.btn-sparkle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sparkle-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--rose);
+  border-radius: 50%;
+  animation: sparkleBurst 0.8s ease-out forwards;
+}
+
+@keyframes sparkleBurst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ============ 隐藏信息 ============ */
+.hidden-message {
+  display: none;
+  text-align: center;
+  padding: 20px 0 10px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.hidden-message.visible {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-content h2 {
+  font-size: 1.6rem;
+  color: var(--rose);
+  margin-bottom: 8px;
+}
+
+.message-content p {
+  font-size: 1.1rem;
+  color: #b05070;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.message-emoji {
+  font-size: 56px;
+  margin-bottom: 12px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.message-hearts {
+  margin: 12px 0 20px;
+}
+
+.message-hearts span {
+  font-size: 28px;
+  margin: 0 6px;
+  display: inline-block;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.message-hearts span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.message-hearts span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.reset-btn {
+  padding: 10px 28px;
+  font-size: 0.95rem;
+  color: var(--rose);
+  background: rgba(255, 182, 193, 0.2);
+  border: 2px solid var(--pink);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 1px;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 182, 193, 0.4);
+  border-color: var(--pink-deep);
+}
+
+/* ============ 成功烟花效果 ============ */
+.confetti-piece {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 100;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* ============ 底部签名 ============ */
+.footer-text {
+  text-align: center;
+  color: #c97a94;
+  font-size: 0.85rem;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+
+/* ============ 响应式 ============ */
+@media (max-width: 600px) {
+  .main-wrapper {
+    padding: 12px;
+  }
+
+  .love-card {
+    padding: 24px 18px 20px;
+    border-radius: 20px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .love-btn {
+    padding: 14px 36px;
+    font-size: 1.05rem;
+  }
+
+  .photo-area {
+    aspect-ratio: 4 / 3;
+  }
+
+  .message-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .message-content p {
+    font-size: 1rem;
+  }
+
+  .message-emoji {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 380px) {
+  .love-card {
+    padding: 18px 12px 16px;
+  }
+
+  .main-title {
+    font-size: 1.3rem;
+  }
+
+  .name-input,
+  .message-input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .love-btn {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️ 向你表白</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 爱心飘落容器 -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- 主内容区域 -->
+  <div class="main-wrapper">
+    <!-- 卡片容器 -->
+    <div class="love-card">
+      <!-- 顶部装饰 -->
+      <div class="card-top-decoration">
+        <span class="deco-heart">💕</span>
+      </div>
+
+      <!-- 标题区域 -->
+      <div class="title-section">
+        <h1 class="main-title">
+          <span class="title-heart">💖</span>
+          我想对你说
+          <span class="title-heart">💖</span>
+        </h1>
+        <p class="subtitle">遇见你，是我最美丽的意外</p>
+      </div>
+
+      <!-- 图片上传/展示区域 -->
+      <div class="photo-section">
+        <div class="photo-area" id="photoArea">
+          <input type="file" id="photoInput" accept="image/*" hidden>
+          <div class="photo-placeholder" id="photoPlaceholder">
+            <span class="photo-icon">📸</span>
+            <p>点击上传你们的合照<br><small>支持 JPG / PNG / WebP</small></p>
+          </div>
+          <img id="photoPreview" class="photo-preview" alt="合照预览" />
+          <button class="photo-change-btn" id="photoChangeBtn" title="更换照片">✎</button>
+        </div>
+      </div>
+
+      <!-- 姓名输入区域 -->
+      <div class="name-section">
+        <label class="input-label">💌 你心爱的 Ta 叫什么名字？</label>
+        <input
+          type="text"
+          id="nameInput"
+          class="name-input"
+          placeholder="输入 Ta 的名字..."
+          maxlength="20"
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- 寄语编辑区域 -->
+      <div class="message-section">
+        <label class="input-label">💬 写下你想说的话</label>
+        <textarea
+          id="messageInput"
+          class="message-input"
+          placeholder="在这里写下你的甜蜜寄语..."
+          maxlength="200"
+          rows="4"
+        >你是我生命中最美的风景，每一天都想和你在一起。💕</textarea>
+        <span class="char-count" id="charCount">0/200</span>
+      </div>
+
+      <!-- 表白按钮 -->
+      <div class="action-section">
+        <button class="love-btn" id="loveBtn">
+          <span class="btn-text">💝 点击表白 💝</span>
+          <span class="btn-sparkle"></span>
+        </button>
+      </div>
+
+      <!-- 隐藏的甜蜜信息 -->
+      <div class="hidden-message" id="hiddenMessage">
+        <div class="message-content">
+          <div class="message-emoji">🥰</div>
+          <h2 id="responseName">亲爱的</h2>
+          <p id="responseMessage">我也好喜欢你！</p>
+          <div class="message-hearts">
+            <span>💗</span><span>💗</span><span>💗</span>
+          </div>
+          <button class="reset-btn" id="resetBtn">再来一次 💌</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部签名 -->
+    <p class="footer-text">💕 用心表白 · 勇敢说爱 💕</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
